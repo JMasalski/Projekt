@@ -1,6 +1,4 @@
-*{
-    overflow:hidden;
-}
+
 img{
     width: 50px;
     height: 50px;
@@ -11,6 +9,7 @@ img{
     height: 35px;
     margin: 0 auto;
 }
+
 
 .koszyk {
     width: 32px;
@@ -32,17 +31,17 @@ img{
     font-size: 30px;
     color: #500b0b;
 }
+body {
+    overflow-x: hidden;
+}
 
 .pizzaAside {
     width: 500px;
     height: 500px;
     animation: krecenie 10s linear infinite;
     position: relative;
-    left: 50%; /* Ustawiamy środek obrazka na 50% szerokości ekranu */
-    /*transform: translateX(-50%); !* Przesuwamy obrazek w lewo, aby był wyśrodkowany *!*/
-    background: none; /* Usuwamy tło, jeśli było ustawione */
-    margin: 0; /* Usuwamy marginesy, które mogą generować niechciane odstępy */
-    padding: 0; /* Usuwamy wypełnienie */
+    left: 65%;
+    object-fit: cover;
 }
 
 
@@ -53,5 +52,14 @@ img{
     to {
         transform: rotate(360deg);
     }
+}
+
+.technologie-ikony {
+    width: 75px;
+    height: 75px;
+
+}
+.technologie-ikony:first-child:hover{
+    box-shadow: 6px 9px 24px 20px rgba(255, 75, 0, 1);
 }
 
