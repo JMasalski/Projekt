@@ -1,0 +1,57 @@
+*{
+    overflow:hidden;
+}
+img{
+    width: 50px;
+    height: 50px;
+    margin: 0 auto;
+}
+.ikony{
+    width: 35px;
+    height: 35px;
+    margin: 0 auto;
+}
+
+.koszyk {
+    width: 32px;
+    height: 32px;
+    transition: transform 1s;
+}
+
+.koszyk:hover {
+    transform: scale(1.2);
+}
+
+#navbarNav{
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.naglowek {
+    font-family: "Cherry Bomb One", system-ui;
+    font-size: 30px;
+    color: #500b0b;
+}
+
+.pizzaAside {
+    width: 500px;
+    height: 500px;
+    animation: krecenie 10s linear infinite;
+    position: relative;
+    left: 50%; /* Ustawiamy środek obrazka na 50% szerokości ekranu */
+    /*transform: translateX(-50%); !* Przesuwamy obrazek w lewo, aby był wyśrodkowany *!*/
+    background: none; /* Usuwamy tło, jeśli było ustawione */
+    margin: 0; /* Usuwamy marginesy, które mogą generować niechciane odstępy */
+    padding: 0; /* Usuwamy wypełnienie */
+}
+
+
+@keyframes krecenie {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
