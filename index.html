@@ -23,46 +23,63 @@
 </head>
 <body>
 
-<header>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-            <a class="navbar-brand d-flex align-items-center" href="index.html">
-                <img src="assets/papalouiehead.png" alt="Logo" class="logo ">
-                <h1 class="px-3 fs-1 naglowek">PAPA LOUIE PIZZA</h1>
-            </a>
-            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-                <ul class="navbar-nav ">
-                    <li class="nav-item px-3 d-flex">
-                        <a class="nav-link" aria-current="page" href="index.html">
-                            <img class="ikony" src="assets/menu.png" alt="menu">
-                            Menu</a>
-                    </li>
-                    <li class="nav-item px-3">
-                        <a class="nav-link" href="pizza.html">
-                            <img class="ikony" src="assets/pizzaIco.png" alt="pizza">
-                            Stwórz własną pizze</a>
-                    </li>
-                    <li class="nav-item px-3">
-                        <a class="nav-link" href="sprawozdanie.html">
-                            <img class="ikony" src="assets/doc.png" alt="sprawozdnie">
-                            Sprawozdanie</a>
-                    </li>
-                </ul>
-            </div>
+<header class="w-100 flex justify-content-between align-items-center">
+
+    <nav class="navbar navbar-expand-lg w-100">
+        <a class="navbar-brand d-flex align-items-center me-auto" href="index.html">
+            <img src="assets/papalouiehead.png" alt="Logo" class="logo">
+            <h1 class="px-3 fs-1 naglowek">PAPA LOUIE PIZZA</h1>
+        </a>
+        <div class="d-flex justify-content-center mx-auto">
+            <ul class="navbar-nav ">
+                <li class="nav-item px-3 d-flex">
+                    <a class="nav-link" aria-current="page" href="index.html">
+                        <img class="ikony" src="assets/menu.png" alt="menu">
+                        Menu</a>
+                </li>
+                <li class="nav-item px-3">
+                    <a class="nav-link" href="pizza.html">
+                        <img class="ikony" src="assets/pizzaIco.png" alt="pizza">
+                        Stwórz własną pizze</a>
+                </li>
+                <li class="nav-item px-3">
+                    <a class="nav-link" href="sprawozdanie.html">
+                        <img class="ikony" src="assets/doc.png" alt="sprawozdnie">
+                        Sprawozdanie</a>
+                </li>
+            </ul>
+        </div>
+        <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample"
+           style="margin-right: 30px;">
+            <img class="koszyk" src="assets/basket3.svg" alt="koszyk">
+            <span id="ilePizz">0</span>
+        </a>
+    </nav>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample"
+         aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasExampleLabel">
+                Koszyk
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
             <div>
-                <a href="index.html" class="nav-link ">
-                    <img class="koszyk mx-4" src="assets/basket3.svg" alt="koszyk">
-                </a>
+                Twoje zamówienie:
             </div>
         </div>
-    </nav>
+    </div>
+
+
 </header>
-<main class="mt-4  h-75">
+<main class=" mt-3 h-75">
     <div class="container-fluid">
         <div class="row">
             <div class="col-8">
                 <section>
-                    <h1 class="cien">Menu</h1>
+                    <h1 class="menu m-2"><strong>Menu</strong></h1>
+                    <div id="dane">
+                    </div>
                 </section>
             </div>
             <div class="col-4">
@@ -79,7 +96,8 @@
     <div class="container-fluid bg-body-tertiary">
         <div class="row mt-3">
             <div class="col-4 ">
-                <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#adres" aria-expanded="false" aria-controls="adres">
+                <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#adres"
+                        aria-expanded="false" aria-controls="adres">
                     <h3>Dane Adresowe
                         <img src="assets/restaurant.png" alt="Logo" class="logo ">
                         <img src="assets/arrow-down-short.svg" alt="Logo" class="logo ">
@@ -98,28 +116,30 @@
 
             </div>
             <div class="col-4">
-                    <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#godziny" aria-expanded="false" aria-controls="godziny">
-                        <h3>Godziny otwarcia
-                            <img src="assets/clock.png" alt="Logo" class="logo ">
-                            <img src="assets/arrow-down-short.svg" alt="Logo" class="logo ">
-                        </h3>
-                    </button>
+                <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#godziny"
+                        aria-expanded="false" aria-controls="godziny">
+                    <h3>Godziny otwarcia
+                        <img src="assets/clock.png" alt="Logo" class="logo ">
+                        <img src="assets/arrow-down-short.svg" alt="Logo" class="logo ">
+                    </h3>
+                </button>
                 <div style="min-height: 120px;">
                     <div class="collapse" id="godziny">
                         <div class="mb-3" style="width: 250px;">
-                            Poniedziałek	11:00 - 21:00<br>
-                            Wtorek	11:00 - 21:00<br>
-                            Środa	11:00 - 21:00<br>
-                            Czwartek	11:00 - 21:00<br>
-                            Piątek	11:00 - 21:00<br>
-                            Sobota	11:00 - 21:00<br>
-                            Niedziela	11:00 - 21:00
+                            Poniedziałek 11:00 - 21:00<br>
+                            Wtorek 11:00 - 21:00<br>
+                            Środa 11:00 - 21:00<br>
+                            Czwartek 11:00 - 21:00<br>
+                            Piątek 11:00 - 21:00<br>
+                            Sobota 11:00 - 21:00<br>
+                            Niedziela 11:00 - 21:00
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-4">
-                <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#socialmedia" aria-expanded="false" aria-controls="socialmedia">
+                <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#socialmedia"
+                        aria-expanded="false" aria-controls="socialmedia">
                     <h3>Social Media
                         <img src="assets/social-media.png" alt="Logo" class="logo ">
                         <img src="assets/arrow-down-short.svg" alt="Logo" class="logo ">
@@ -128,13 +148,16 @@
                 <div style="min-height: 120px;">
                     <div class="collapse" id="socialmedia">
                         <div class="mb-3" style="width: 250px;">
-                            <button type="button" class="btn" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Pracujemy nad tym">
+                            <button type="button" class="btn" data-bs-container="body" data-bs-toggle="popover"
+                                    data-bs-placement="bottom" data-bs-content="Pracujemy nad tym">
                                 <img class="logo" src="assets/tik-tok.png">
                             </button>
-                            <button type="button" class="btn " data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Pracujemy nad tym">
+                            <button type="button" class="btn " data-bs-container="body" data-bs-toggle="popover"
+                                    data-bs-placement="bottom" data-bs-content="Pracujemy nad tym">
                                 <img class="logo" src="assets/facebook.png">
                             </button>
-                            <button type="button" class="btn" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Pracujemy nad tym">
+                            <button type="button" class="btn" data-bs-container="body" data-bs-toggle="popover"
+                                    data-bs-placement="bottom" data-bs-content="Pracujemy nad tym">
                                 <img class="logo" src="assets/instagram.png">
                             </button>
                         </div>

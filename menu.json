@@ -1,0 +1,22 @@
+[
+  {
+    "nazwa_pizzy": "Margherita",
+    "skladniki": ["Ser mozzarella", "Sos pomidorowy"],
+    "cena": 20.00
+  },
+  {
+    "nazwa_pizzy": "Capricciosa",
+    "skladniki": ["Ser mozzarella", "Sos pomidorowy", "Szynka", "Pieczarki"],
+    "cena": 25.00
+  },
+  {
+    "nazwa_pizzy": "Hawajska",
+    "skladniki": ["Ser mozzarella", "Sos pomidorowy", "Szynka", "Ananas"],
+    "cena": 27.00
+  },
+  {
+    "nazwa_pizzy": "Salami Special",
+    "skladniki": ["Ser mozzarella", "Sos pomidorowy", "Salami", "Oliwki"],
+    "cena": 30.00
+  }
+]
