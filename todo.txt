@@ -13,4 +13,4 @@
     4.6 Wyswietlanie numeru telefonu
     4.7 Wyswietlanie numeru zamowienia
     4.8 Wyswietlanie potwierdzenia zamowienia
-5. Baza danych/JSON skladnikow z cenami skladnika
+5. Baza danych/JSON skladnikow z cenami skladnika -- zrobione
