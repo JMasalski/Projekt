@@ -1,0 +1,16 @@
+1. Modal tworzenia wlasnej pizzy
+2. Dodawnie do koszyka
+3. Wyswietlanie w koszyku + iteracja spana
+    3.1 Usuwanie z koszyka
+    3.2 Sumowanie cen
+    3.3 Przejscie do strony zlozenia zamowienia
+4. Strona zlozenia zamowienia
+    4.1 Formularz
+    4.2 Wyswietlanie koszyka
+    4.3 Wyswietlanie ceny
+    4.4 Wyswietlanie czasu dostawy
+    4.5 Wyswietlanie adresu dostawy
+    4.6 Wyswietlanie numeru telefonu
+    4.7 Wyswietlanie numeru zamowienia
+    4.8 Wyswietlanie potwierdzenia zamowienia
+5. Baza danych/JSON skladnikow z cenami skladnika

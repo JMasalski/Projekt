@@ -25,7 +25,7 @@ function menu() {
             });
             // Add customizable pizza
             lista += `<li class='d-flex gap-2 align-items-center list-group-item'><h2>Stwórz własną pizzę</h2> - Wybierz własne składniki 
-<button type='button' class='btn mx-2 ms-auto'>Cena zależna od składników</button></li>`;
+<button type='button' class='btn mx-2 ms-auto' data-bs-toggle="modal" data-bs-target="#kompnujPizze">Cena zależna od składników</button></li>`;
             dane.innerHTML = lista + "</ul>";
         })
         .catch(error => console.error('Błąd podczas wczytywania menu:', error));
