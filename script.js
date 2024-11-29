@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
     modalElement.addEventListener('hidden.bs.modal', function () {
         document.querySelector('#cenaWlasna').textContent = 'Cena: 10 zł';
     });
+
 });
 //
 
@@ -44,7 +45,7 @@ async function menu() {
     pizza.skladniki = pizza.skladniki.split(',');
     lista += `<li class='d-flex gap-2 align-items-center list-group-item'>
                 <h2>${pizza.nazwa_pizzy}</h2> - ${pizza.skladniki.map(skladnik => `<span class='fs-5'>${skladnik}</span>`).join(', ')}
-                <button type='button' class='btn fs-5 m-2 ms-auto' onclick="dodaj('${pizza.nazwa_pizzy}', '${pizza.cena}')">${pizza.cena} zł</button>
+                <button type='button' class='btn fs-5 m-2 ms-auto' onclick="dodaj('${pizza.nazwa_pizzy}', '${pizza.cena}')" id="liveToastBtn">${pizza.cena} zł</button>
               </li>`;
 }
     lista += `<li class='d-flex gap-2 align-items-center list-group-item'><h2>Stwórz własną pizzę</h2> - <span class="fs-5">Wybierz własne składniki</span>
@@ -82,7 +83,7 @@ function pokazKoszyk() {
     }
     lista += "</ul>";
     zamowienie.innerHTML = lista;
-    document.querySelector('#cena').textContent = `Cena: ${cena.toFixed(2)} zł`;
+    document.querySelector('#cena').textContent = `Przejdź do złożenia zamówienia: ${cena.toFixed(2)} zł`;
 }
 
 

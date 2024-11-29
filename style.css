@@ -98,7 +98,9 @@ li button {
 }
 
 
-
+.offcanvas {
+    width: 450px !important; /* Nadpisanie domyślnej szerokości */
+}
 
 
 
