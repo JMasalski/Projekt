@@ -67,8 +67,15 @@ li button {
     font-size: 30px;
     color: #BB3E00
 }
+
 .lista{
-    background-color: #F7AD45;
+    /*background-color: #F7AD45;*/
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border:1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(247, 173, 69, 0.9);
 }
 
 .pizzaAside {
@@ -90,13 +97,16 @@ li button {
     }
 }
 
+
+
+
+
+
+
+/*sprawozdanie*/
 .technologie-ikony {
     width: 75px;
     height: 75px;
-
-}
-.technologie-ikony:first-child:hover{
-    box-shadow: 6px 9px 24px 20px rgba(255, 75, 0, 1);
 }
 
 

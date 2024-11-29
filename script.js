@@ -3,10 +3,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
     const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl));
 
-    const modalElement = document.getElementById('kompnujPizze');
+    const modalElement = document.querySelector('#kompnujPizze');
     modalElement.addEventListener('hidden.bs.modal', function () {
-        const priceElement = document.getElementById('cenaWlasna');
-        priceElement.textContent = 'Cena: 10 zł';
+        document.querySelector('#cenaWlasna').textContent = 'Cena: 10 zł';
     });
 });
 //
@@ -19,6 +18,7 @@ const baza = {
     sql: ''
 };
 
+let koszyk =[]
 baseURL = 'http://localhost/Projekt/index.html';
 
 window.onload = () => {
@@ -40,15 +40,51 @@ async function menu() {
     });
     let listaMenu = await response.json();
     let lista = "<ul class='lista rounded my-5'>";
-    for(let pizza of listaMenu) {
-        pizza.skladniki = pizza.skladniki.split(',');
-        lista += `<li class='d-flex gap-2 align-items-center list-group-item'><h2>${pizza.nazwa_pizzy}</h2> - ${pizza.skladniki.map(skladnik => `<span class='fs-5'>${skladnik}</span>`)}
-<button type='button' class='btn fs-5 m-2 ms-auto'>${pizza.cena} zł</button></li>`;
-    }
+    for (let pizza of listaMenu) {
+    pizza.skladniki = pizza.skladniki.split(',');
+    lista += `<li class='d-flex gap-2 align-items-center list-group-item'>
+                <h2>${pizza.nazwa_pizzy}</h2> - ${pizza.skladniki.map(skladnik => `<span class='fs-5'>${skladnik}</span>`).join(', ')}
+                <button type='button' class='btn fs-5 m-2 ms-auto' onclick="dodaj('${pizza.nazwa_pizzy}', '${pizza.cena}')">${pizza.cena} zł</button>
+              </li>`;
+}
     lista += `<li class='d-flex gap-2 align-items-center list-group-item'><h2>Stwórz własną pizzę</h2> - <span class="fs-5">Wybierz własne składniki</span>
 <button onclick="modal()" type='button' class='btn fs-5 m-2 ms-auto' data-bs-toggle="modal" data-bs-target="#kompnujPizze">Cena zależna od składników</button></li>`;
     dane.innerHTML = lista + "</ul>";
 }
+
+
+
+function dodaj(nazwa, cena) {
+    let cenaPizzy = cena
+    let nazwaPizzy = nazwa
+    koszyk.push({nazwaPizzy, cenaPizzy})
+    document.querySelector('#ilePizz').textContent = koszyk.length
+    pokazKoszyk();
+}
+function usun(nazwa, cena) {
+    let index = koszyk.findIndex(pizza => pizza.nazwaPizzy === nazwa && pizza.cenaPizzy === cena);
+    if (index !== -1) {
+        koszyk.splice(index, 1);
+    }
+    document.querySelector('#ilePizz').textContent = koszyk.length;
+    pokazKoszyk();
+}
+
+function pokazKoszyk() {
+    let cena = 0
+    let lista = "<ul class='lista rounded my-5'>";
+    for (let pizza of koszyk) {
+        cena += parseFloat(pizza.cenaPizzy)
+        lista += `<li class='d-flex gap-2 align-items-center list-group-item'>
+                <h3>${pizza.nazwaPizzy} - ${pizza.cenaPizzy} zł</h3>
+                <button type='button' class='btn fs-5 m-2 ms-auto' onclick="usun('${pizza.nazwaPizzy}', '${pizza.cenaPizzy}')">Usuń</button>
+              </li>`;
+    }
+    lista += "</ul>";
+    zamowienie.innerHTML = lista;
+    document.querySelector('#cena').textContent = `Cena: ${cena.toFixed(2)} zł`;
+}
+
 
 async function modal() {
     baza.sql = "SELECT `nazwa`, `cena` FROM `skladniki`;";

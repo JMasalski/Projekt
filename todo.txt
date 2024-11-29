@@ -1,6 +1,6 @@
-1. Modal tworzenia wlasnej pizzy
+1. Modal tworzenia wlasnej pizzy -- zrobione
 2. Dodawnie do koszyka
-3. Wyswietlanie w koszyku + iteracja spana
+3. Wyswietlanie w koszyku +             iteracja spana --zrobione
     3.1 Usuwanie z koszyka
     3.2 Sumowanie cen
     3.3 Przejscie do strony zlozenia zamowienia

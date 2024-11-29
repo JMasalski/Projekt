@@ -26,7 +26,7 @@
 <header class="w-100 flex justify-content-between align-items-center">
     <nav class="navbar navbar-expand-lg w-100">
         <a class="navbar-brand d-flex align-items-center me-auto" href="index.html">
-            <img src="assets/papalouiehead.png" alt="Logo" class="logo">
+            <img class="mx-2" src="assets/papalouiehead.png" alt="Logo" class="logo">
             <h1 class="px-3 fs-1 naglowek">PAPA LOUIE PIZZA</h1>
         </a>
         <div class="d-flex justify-content-center mx-auto">
@@ -48,7 +48,7 @@
                 </li>
             </ul>
         </div>
-        <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample"
+        <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" onclick="pokazKoszyk()" aria-controls="offcanvasExample"
            style="margin-right: 30px;">
             <img class="koszyk" src="assets/basket3.svg" alt="koszyk">
             <span id="ilePizz">0</span>
@@ -57,7 +57,7 @@
 </header>
 
 <!--//TODO-->
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample"
+    <div class="offcanvas offcanvas-end " data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasExample"
          aria-labelledby="offcanvasExampleLabel">
         <div class="offcanvas-header">
             <h5 class="offcanvas-title" id="offcanvasExampleLabel">
@@ -68,6 +68,10 @@
         <div class="offcanvas-body">
             <div>
                 Twoje zamówienie:
+                <div id="zamowienie"></div>
+                <button>
+                    <div id="cena"></div>
+                </button>
             </div>
         </div>
     </div>
@@ -94,10 +98,11 @@
 </main>
 
 
-    <!-- Modal -->
+
+<!--     Modal-->
     <div class="modal fade" id="kompnujPizze" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content szklo">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Skomponuj swoją pizze</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -112,7 +117,7 @@
                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Zamknij</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-primary">Dodaj do koszyka</button>
                 </div>
             </div>
         </div>
