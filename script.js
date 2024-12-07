@@ -23,7 +23,7 @@ const baza = {
 baseURL = 'http://localhost/Projekt/index.html';
 
 window.onload = () => {
-    if (window.location.pathname.endsWith('pizza.html')) {
+    if (window.location.pathname.endsWith('zamowienie.html')) {
         loadKoszyk();
         listaZamowiona();
     } else {
@@ -45,22 +45,20 @@ async function menu() {
         body: dataToSend
     });
     let listaMenu = await response.json();
-    console.log(listaMenu)
     let lista = "<ul class='lista rounded my-5'>";
     for (let pizza of listaMenu) {
         pizza.skladniki = pizza.skladniki.split(',');
         lista += `<li class='d-flex flex-wrap gap-2 align-items-center list-group-item'>
                     <h2>${pizza.nazwa_pizzy}</h2> - ${pizza.skladniki.map(skladnik => `<span class='fs-5'>${skladnik}</span>`).join(', ')}
-                    <button type='button' class='btn fs-5 m-2 ms-auto' onclick="dodajDoKoszyka('${pizza.nazwa_pizzy}', '${pizza.cena}', '${pizza.skladniki}')" id="liveToastBtn">${pizza.cena} zł</button>
+                    <button type='button' class='btn fs-5 m-2 ms-auto dodaj' onclick="dodajDoKoszyka('${pizza.nazwa_pizzy}', '${pizza.cena}', '${pizza.skladniki}')" id="liveToastBtn">${pizza.cena} zł</button>
                   </li>`;
     }
     lista += `<li class='d-flex gap-2 align-items-center list-group-item'><h2>Stwórz własną pizzę</h2> - <span class="fs-5">Wybierz własne składniki</span>
-    <button onclick="modal()" type='button' class='btn fs-5 m-2 ms-auto' data-bs-toggle="modal" data-bs-target="#kompnujPizze">Cena zależna od składników</button></li>`;
+    <button onclick="modal()" type='button' class='btn fs-5 m-2 ms-auto dodaj' data-bs-toggle="modal" data-bs-target="#kompnujPizze">Cena zależna od składników</button></li>`;
     dane.innerHTML = lista + "</ul>";
 }
 
 function listaZamowiona() {
-    console.log(koszyk);
     let cena = 0;
     let lista = "<ul class='lista rounded my-5'>";
     for (let pizza of koszyk) {
@@ -69,7 +67,7 @@ function listaZamowiona() {
                     <h3>${pizza.nazwaPizzy}  </h3> - 
                     <span class="fs-5">${pizza.skladnikiPizzy}</span>
                     <span class="fs-4 ms-auto">${pizza.cenaPizzy} zł</span>
-                    <button type='button' class='btn fs-5 m-2' onclick="usun('${pizza.nazwaPizzy}', '${pizza.cenaPizzy}')">Usuń</button>
+                    <button class='btn btn-danger fs-5 m-2' onclick="usun('${pizza.nazwaPizzy}', '${pizza.cenaPizzy}')">Usuń</button>
                   </li>`;
     }
 
@@ -80,7 +78,6 @@ function listaZamowiona() {
     }
     lista += "</ul>";
     skompletowane.innerHTML = lista;
-    console.log(lista);
 }
 
 //OBSŁUGA KOSZYKA
@@ -107,7 +104,6 @@ function dodajDoKoszyka(nazwa, cena, skladniki = []) {
         skladnikiPizzy = Array.from(document.querySelectorAll('.form-check-input:checked')).map(checkbox => checkbox.value).join(', ');
     }
     koszyk.push({ nazwaPizzy, cenaPizzy, skladnikiPizzy });
-    console.log(koszyk);
     document.querySelector('#ilePizz').textContent = koszyk.length;
     saveKoszyk();
     pokazKoszyk();
@@ -136,7 +132,7 @@ function pokazKoszyk() {
         cena += parseFloat(pizza.cenaPizzy);
         lista += `<li class='d-flex gap-2 align-items-center list-group-item'>
                     <h3>${pizza.nazwaPizzy} - ${pizza.cenaPizzy} zł</h3>
-                    <button type='button' class='btn fs-5 m-2 ms-auto' onclick="usun('${pizza.nazwaPizzy}', '${pizza.cenaPizzy}')">Usuń</button>
+                    <button type='button' class='btn btn-danger fs-5 m-2 ms-auto' onclick="usun('${pizza.nazwaPizzy}', '${pizza.cenaPizzy}')">Usuń</button>
                   </li>`;
     }
     lista += "</ul>";
@@ -148,7 +144,7 @@ function pokazKoszyk() {
 
     const cenaElement = document.querySelector('#cena');
     if (cenaElement) {
-        cenaElement.textContent = `Przejdź do złożenia zamówienia: ${cena.toFixed(2)} zł`;
+        cenaElement.innerHTML = `Przejdź do złożenia zamówienia: ${cena.toFixed(2)} zł<img class="strzalka mx-3" src="assets/right.png" alt="right">`;
     }
 
 }

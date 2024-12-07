@@ -1,3 +1,8 @@
+*{
+    margin:0;
+    padding:0;
+}
+
 body {
     overflow-x: hidden;
     background-color:#fff1d7 ;
@@ -6,8 +11,12 @@ header{
     background-color: #F7AD45;
     box-shadow: 0px 10px 13px 1px rgba(187, 62, 0, 0.8);
 }
+footer{
+    background-color:#fff1d7 ;;
+}
 
 main{
+    height: 70vh;
     background-color:#fff1d7 ;
 }
 
@@ -21,6 +30,10 @@ img{
     width: 40px;
     height: 40px;
     margin: 0 auto;
+    transition: transform 1s;
+}
+.ikony:hover{
+    transform: scale(1.2);
 }
 
 .koszyk {
@@ -32,6 +45,13 @@ img{
 
 .koszyk:hover {
     transform: scale(1.2);
+}
+
+.strzalka{
+    width: 25px;
+    height: 25px;
+    margin: 0 auto;
+    color:white;
 }
 
 #ilePizz{
@@ -51,12 +71,13 @@ img{
 .menu{
     color:#5f8d37;
 }
+
 li{
     font-family: "JetBrains Mono Light";
     color :#274530 !important;
 }
 
-li button {
+.dodaj {
     color:white !important;
     background-color: #5f8d37 !important;
 }
@@ -69,7 +90,6 @@ li button {
 }
 
 .lista{
-    /*background-color: #F7AD45;*/
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -79,8 +99,8 @@ li button {
 }
 
 .pizzaAside {
-    width: 500px;
-    height: 500px;
+    width: 1000px;
+    height: 1000px;
     animation: krecenie 10s linear infinite;
     position: relative;
     left: 65%;

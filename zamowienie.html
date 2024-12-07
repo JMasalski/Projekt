@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Papa Louie Pizza</title>
-    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
 
     <link rel="stylesheet" href="style.css">
     <!--    czczionka-->
@@ -20,25 +20,26 @@
             crossorigin="anonymous"></script>
     <script src="script.js"></script>
 </head>
+
 <body>
-<header class="w-100 flex justify-content-between align-items-center">
+<header class="d-flex justify-content-between">
     <nav class="navbar navbar-expand-lg w-100">
-        <a class="navbar-brand d-flex align-items-center me-auto" href="index.html">
-            <img class="mx-2 logo" src="assets/papalouiehead.png" alt="Logo" >
+        <a class="navbar-brand d-flex me-auto" href="index.html">
+            <img class="mx-2 logo" src="assets/papalouiehead.png" alt="Logo">
             <h1 class="px-3 fs-1 naglowek">PAPA LOUIE PIZZA</h1>
         </a>
-        <div class="d-flex justify-content-center mx-auto">
-            <ul class="navbar-nav ">
-                <li class="nav-item px-3 d-flex">
+        <div class="mx-auto">
+            <ul class="navbar-nav">
+                <li class="nav-item px-3 ">
                     <a class="nav-link" aria-current="page" href="index.html">
                         <img class="ikony" src="assets/menu.png" alt="menu">
                         Menu
                     </a>
+                </li>
                 <li class="nav-item px-3">
                     <a class="nav-link" href="sprawozdanie.html">
                         <img class="ikony" src="assets/doc.png" alt="sprawozdnie">
-                        Sprawozdanie
-                    </a>
+                        Sprawozdanie</a>
                 </li>
             </ul>
         </div>
@@ -46,75 +47,75 @@
 </header>
 
 <main>
-    <div class="container-fluid text-center">
+    <div class="container-fluid ">
         <div class="row">
-            <div class="col-12 col-md-6 mx-0">
+            <div class="col-8 col-md-6 mx-0">
                 <h1 class="mt-2">Twoje zamówienie</h1>
                 <div id="skompletowane"></div>
             </div>
-            <div class="col-12 col-md-6 mx-0">
-                <form>
+
+            <div class="col-12 col-md-6 mx-0 ">
+                <h1 class="mt-2 text-center">Dane kontaktowe</h1>
+                <form class="mx-3">
                     <div class="row">
-                        <h1 class="mt-2">Dane Kontaktowe</h1>
-
-                        <div class="col-8 mb-3  d-flex justify-content-center mx-auto align-items-center form-floating">
-                            <input type="text" class="form-control" id="floatingInput" placeholder="imieinazwisko">
-                            <label for="floatingInput">Imie i nazwisko</label>
+                        <div class="form-floating mb-3 col-6">
+                            <input type="text" class="form-control" id="imie" placeholder="Imie i nazwisko">
+                            <label class="mx-3" for="imie">Imie i nazwisko</label>
                         </div>
+                        <div class="form-floating mb-3 col-6">
+                            <input type="text" class="form-control" id="numer" placeholder="Nr Telefonu">
+                            <label class="mx-3" for="numer">Nr telefonu</label>
+                        </div>
+                    </div>
+                    <h1 class="mt-2 text-center">Dane adresowe</h1>
+                    <div class="row">
+                        <div class="form-floating mb-3 col-6">
+                            <input type="text" class="form-control" id="ulica" placeholder="Ulica">
+                            <label class="mx-3" for="ulica">Ulica</label>
+                        </div>
+                        <div class="form-floating mb-3 col-6">
+                            <input type="text" class="form-control" id="numerDomu" placeholder="Numer domu">
+                            <label class="mx-3" for="numer">Numer domu</label>
+                        </div>
+                    </div>
 
-                        <label for="nrtele">Nr Telefonu</label>
-                        <div class="col-8 d-flex justify-content-center mx-auto align-items-center ">
-                            <input type="text" class="form-control" placeholder="Nr Telefonu" name="nrtele" id="nrtele"
-                                   aria-label="imie">
+                    <div class="row">
+                        <div class="form-floating mb-3 col-12">
+                            <input type="text" class="form-control" id="miasto" placeholder="Miasto">
+                            <label class="mx-3" for="miasto">Miasto</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-floating mb-3 col-6">
+                            <input type="text" class="form-control" id="numerMieszkania" placeholder="Numer mieszkania">
+                            <label class="mx-3" for="miasto">Numer mieszkania</label>
+                        </div>
+                        <div class="form-floating mb-3 col-6">
+                            <input type="text" class="form-control" id="pietro" placeholder="Piętro">
+                            <label class="mx-3" for="pietro">Piętro</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-floating">
+                            <textarea class="form-control" placeholder="Dodaj swoje uwagi" id="uwagi" style="height: 50px; max-height: 100px"></textarea>
+                            <label class="mx-3" for="uwagi">Dodaj swoje uwagi</label>
                         </div>
                     </div>
                     <div class="row my-3">
-                        <h1 class="my-2">Adres</h1>
-                        <div class="col-5 mx-0 d-flex flex-column align-items-start">
-                            <label for="ulica" class="m-0">Ulica</label>
-                            <input type="text" class="form-control" placeholder="Ulica" name="ulica" id="ulica"
-                                   aria-label="ulica">
-                        </div>
-                        <div class="col-5 mx-0 d-flex flex-column align-items-start">
-                            <label for="nrdomu" class="m-0">Nr domu</label>
-                            <input type="text" class="form-control" placeholder="Nr domu" name="nrdomu" id="nrdomu"
-                                   aria-label="nrdomu">
-                        </div>
-                        <div class="col-5 mx-0 d-flex flex-column align-items-start">
-                            <label for="nrmieszkania" class="m-0">Nr mieszkania</label>
-                            <input type="text" class="form-control" placeholder="Nr mieszkania" name="nrmieszkania"
-                                   id="nrmieszkania" aria-label="nrmieszkania">
-                        </div>
-                        <div class="col-5 mx-0 d-flex flex-column align-items-start">
-                            <label for="kodpocztowy" class="m-0">Kod pocztowy</label>
-                            <input type="text" class="form-control" placeholder="Kod pocztowy" name="kodpocztowy"
-                                   id="kodpocztowy" aria-label="kodpocztowy">
-                        </div>
-                        <div class="col-5 mx-0 d-flex flex-column align-items-start">
-                            <label for="miasto" class="m-0">Miasto</label>
-                            <input type="text" class="form-control" placeholder="Miasto" name="miasto" id="miasto"
-                                   aria-label="miasto">
-                        </div>
-                    </div>
-                    <div class="row my-3">
-                        <h1 class="my-2">Uwagi</h1>
-                        <div class="form-floating col-8 d-flex justify-content-center mx-auto align-items-center">
-                            <textarea class="form-control " placeholder="Uwagi" id="floatingTextarea"></textarea>
-                            <label for="floatingTextarea">Uwagi</label>
-                        </div>
+                        <button class="btn btn-primary" >Złóż zamówienie <img class="mx-2" style="width: 30px; height: 30px" src="assets/send.png"></button>
                     </div>
                 </form>
-
             </div>
+
+
         </div>
     </div>
 
-
 </main>
 
-<footer>
-    <div class="container-fluid bg-body-tertiary">
-        <div class="row mt-2">
+<footer class="border-top border-dark">
+    <div class="container-fluid ">
+        <div class="row">
             <div class="col-4 mt-2 ">
                 <a class="text-decoration-none text-dark" role="button" data-bs-toggle="collapse"
                    data-bs-target="#adres"
@@ -190,6 +191,6 @@
     </div>
 </footer>
 
-<!--<img class="h-50 w-50" src="assets/papalouie.gif" alt="Papa Louie">-->
+
 </body>
 </html>
