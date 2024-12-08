@@ -179,6 +179,25 @@ async function modal() {
     });
 }
 
+
+function zlozZamowieni(event){
+    event.preventDefault()
+    const imieNazwisko = document.querySelector('#imie').value
+    const nrTele = document.querySelector('#numer').value
+    const ulica = document.querySelector('#ulica').value
+    const nrDomu = document.querySelector('#numerDomu').value
+    const miasto = document.querySelector('#miasto').value
+    const nrMieszkania = document.querySelector('#numerMieszkania').value
+    const pietro = document.querySelector('#pietro').value
+    const uwagi = document.querySelector('#uwagi').value
+    let cena = 0;
+    koszyk.forEach(pizza => {
+        cena += parseFloat(pizza.cenaPizzy);
+        console.log(pizza.nazwaPizzy, pizza.cenaPizzy, pizza.skladnikiPizzy);
+    });
+    console.log(imieNazwisko, nrTele, ulica, nrDomu, miasto, nrMieszkania, pietro, uwagi, cena.toFixed(2));
+}
+
 function liczCene() {
     let totalPrice = 10; //Cena podstawowa pizzy własnej
     const checkboxes = document.querySelectorAll('.form-check-input:checked');
