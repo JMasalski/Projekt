@@ -117,12 +117,17 @@ li{
     }
 }
 
-
 .offcanvas {
-    width: 450px !important; /* Nadpisanie domyślnej szerokości */
+    width: 450px !important;
 }
 
+.send {
+    transition: transform 0.5s ease-in-out;
+}
 
+#zlozenieZamowienia:hover .send {
+    transform: rotate(360deg);
+}
 
 
 /*sprawozdanie*/

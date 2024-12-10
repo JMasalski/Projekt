@@ -1,15 +1,3 @@
-4. Strona zlozenia zamowienia - pozmieniac wszystkie formularze na te same co imie i nazwisko, dodac przycisk wyslania
-formularza
-
-    4.1 Formularz
-    4.2 Wyswietlanie koszyka
-    4.3 Wyswietlanie ceny
-    4.4 Wyswietlanie czasu dostawy
-    4.5 Wyswietlanie adresu dostawy
-    4.6 Wyswietlanie numeru telefonu
-    4.7 Wyswietlanie numeru zamowienia
-    4.8 Wyswietlanie potwierdzenia zamowienia
-
-5. Wystylizowac przycisk na koszyku
-
-6. Zmienic baze danych zamowienie
+1. Walidacja formularza
+2. Admin panel
+3.Sad emoji do przycisku gdy koszyk jest pusty

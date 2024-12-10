@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 01, 2024 at 09:00 PM
+-- Generation Time: Dec 10, 2024 at 07:07 PM
 -- Wersja serwera: 10.4.32-MariaDB
 -- Wersja PHP: 8.2.12
 
@@ -80,12 +80,24 @@ INSERT INTO `skladniki` (`id`, `nazwa`, `cena`) VALUES
 
 CREATE TABLE `zamowienie` (
   `id` int(11) NOT NULL,
-  `adres` varchar(255) NOT NULL,
-  `zamowione_pizze` text NOT NULL,
-  `cena` decimal(10,2) NOT NULL,
-  `nr_telefonu` varchar(15) NOT NULL,
-  `imie_nazwisko` varchar(100) NOT NULL
+  `imieNazwisko` varchar(255) DEFAULT NULL,
+  `nrTele` varchar(15) DEFAULT NULL,
+  `ulica` varchar(255) DEFAULT NULL,
+  `nrDomu` varchar(10) DEFAULT NULL,
+  `nrMieszkania` varchar(10) DEFAULT NULL,
+  `pietro` varchar(5) DEFAULT NULL,
+  `miasto` varchar(100) DEFAULT NULL,
+  `uwagi` text DEFAULT NULL,
+  `cena` decimal(10,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `zamowienie`
+--
+
+INSERT INTO `zamowienie` (`id`, `imieNazwisko`, `nrTele`, `ulica`, `nrDomu`, `nrMieszkania`, `pietro`, `miasto`, `uwagi`, `cena`) VALUES
+(29, 'Jakub Masalski', '123123123', 'Józefa Wybickiego', '14', '29', '9', 'elblag', 'Duzo sera', 45.00),
+(30, 'Jakub BBB', '123123123', 'Romana', '14', '16', '44', 'era', '47oki', 45.00);
 
 --
 -- Indeksy dla zrzutów tabel
@@ -129,7 +141,7 @@ ALTER TABLE `skladniki`
 -- AUTO_INCREMENT for table `zamowienie`
 --
 ALTER TABLE `zamowienie`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
