@@ -19,7 +19,6 @@ const baza = {
 baseURL = 'http://localhost/Projekt/index.html';
 
 
-
 window.onload = () => {
     if (window.location.pathname.endsWith('zamowienie.html')) {
         loadKoszyk();
@@ -27,6 +26,7 @@ window.onload = () => {
         sprawdzCzyKoszykPusty();
     } else {
         menu();
+        adminPanelZamowienia();
     }
 };
 
@@ -56,6 +56,56 @@ async function menu() {
     <button onclick="modal()" type='button' class='btn fs-5 m-2 ms-auto dodaj' data-bs-toggle="modal" data-bs-target="#kompnujPizze">Cena zależna od składników</button></li>`;
     dane.innerHTML = lista + "</ul>";
 }
+
+async function adminPanelZamowienia() {
+    baza.sql = "SELECT z.id AS zamowienie_id, z.imieNazwisko, z.nrTele, z.miasto, z.ulica, z.nrDomu, z.nrMieszkania, z.pietro, z.uwagi, z.cena AS cena_zamowienia, z.created_at, " +
+        "GROUP_CONCAT( CONCAT(p.nazwaPizzy, ' (', p.skladnikiPizzy, ') - ', p.cenaPizzy, ' zł') SEPARATOR '; ' ) " +
+        "AS szczegoly_pizz FROM zamowienie z LEFT JOIN pizzas p ON z.id = p.zamowienie_id GROUP BY z.id ORDER BY z.created_at DESC;"
+    const dataToSend = JSON.stringify(baza);
+    let url = new URL('adminPanelZamowienia.php', baseURL);
+    let resposne = await fetch(url, {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json'
+        }, body: dataToSend
+    });
+    let zamowienia = await resposne.json();
+    console.log(zamowienia);
+
+    zamowienia.forEach(zamowienie => {
+        const lista = `
+        <table class="container-fluid mt-5 border border-1">
+    <tr class="mx-2">
+        <th class="px-2">Imię i nazwisko</th>
+        <th class="px-2">Nr Telefonu</th>
+        <th class="px-2">Miasto</th>
+        <th class="px-2">Ulica / Nr Domu</th>
+        <th class="px-2">Nr Mieszkania</th>
+        <th class="px-2">Pietro</th>
+        <th class="px-2">Szczegóły Pizz</th>
+        <th class="px-2">Uwagi</th>
+        <th class="px-2">Cena Zamówienia</th>
+        <th class="px-2">Data Zamówienia</th>
+    </tr>
+    <tr class="mx-2">
+        <td class="mx-5">${zamowienie.imieNazwisko}</td>
+        <td class="mx-5">${zamowienie.nrTele}</td>
+        <td class="mx-5">${zamowienie.miasto}</td>
+        <td class="mx-5">${zamowienie.ulica} / ${zamowienie.nrDomu}</td>
+        <td class="mx-5">${zamowienie.nrMieszkania ? zamowienie.nrMieszkania : ''}</td>
+        <td class="mx-5">${zamowienie.pietro ? zamowienie.pietro : ''}</td>
+        <td class="mx-5">${zamowienie.szczegoly_pizz}</td>
+        <td class="mx-5">${zamowienie.uwagi ? zamowienie.uwagi : ''}</td>
+        <td class="mx-5">${zamowienie.cena_zamowienia} zł</td>
+        <td class="mx-5">${zamowienie.created_at}</td>
+    </tr>
+</table>
+        `;
+        document.querySelector('#tab').innerHTML += lista;
+    });
+}
+
 
 //offcanvas/koszyk na index.html
 //WYŚWIETALNIE KOSZYKA / AKUTALIZOWANIE GO
@@ -123,7 +173,6 @@ function loadKoszyk() {
         koszyk = JSON.parse(savedKoszyk);
     }
 }
-
 
 
 //index.html
@@ -295,7 +344,7 @@ async function zlozZamowienie(e) {
         //Przekierowanie na glowna strone
         setTimeout(() => {
             window.location.href = 'index.html';
-        },5000);
+        }, 5000);
     }
 
 }
