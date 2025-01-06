@@ -12,6 +12,7 @@ $data = json_decode($json, true);
 $link = new mysqli($data['host'], $data['user'], $data['pass'], $data['baza']);
 
 
+
 // Wykonanie zapytania
 $sql = $data['sql'];
 $result = $link->query($sql);

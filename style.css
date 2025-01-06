@@ -1,6 +1,7 @@
 *{
     margin:0;
     padding:0;
+
 }
 
 body {
@@ -101,7 +102,7 @@ li{
 .pizzaAside {
     width: 1000px;
     height: 1000px;
-    animation: krecenie 10s linear infinite;
+    animation: krecenie 15s linear infinite;
     position: relative;
     left: 65%;
     object-fit: cover;

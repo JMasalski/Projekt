@@ -71,39 +71,41 @@ async function adminPanelZamowienia() {
         }, body: dataToSend
     });
     let zamowienia = await resposne.json();
-    console.log(zamowienia);
 
-    zamowienia.forEach(zamowienie => {
-        const lista = `
-        <table class="container-fluid mt-5 border border-1">
-    <tr class="mx-2">
-        <th class="px-2">Imię i nazwisko</th>
-        <th class="px-2">Nr Telefonu</th>
-        <th class="px-2">Miasto</th>
-        <th class="px-2">Ulica / Nr Domu</th>
-        <th class="px-2">Nr Mieszkania</th>
-        <th class="px-2">Pietro</th>
-        <th class="px-2">Szczegóły Pizz</th>
-        <th class="px-2">Uwagi</th>
-        <th class="px-2">Cena Zamówienia</th>
-        <th class="px-2">Data Zamówienia</th>
-    </tr>
-    <tr class="mx-2">
-        <td class="mx-5">${zamowienie.imieNazwisko}</td>
-        <td class="mx-5">${zamowienie.nrTele}</td>
-        <td class="mx-5">${zamowienie.miasto}</td>
-        <td class="mx-5">${zamowienie.ulica} / ${zamowienie.nrDomu}</td>
-        <td class="mx-5">${zamowienie.nrMieszkania ? zamowienie.nrMieszkania : ''}</td>
-        <td class="mx-5">${zamowienie.pietro ? zamowienie.pietro : ''}</td>
-        <td class="mx-5">${zamowienie.szczegoly_pizz}</td>
-        <td class="mx-5">${zamowienie.uwagi ? zamowienie.uwagi : ''}</td>
-        <td class="mx-5">${zamowienie.cena_zamowienia} zł</td>
-        <td class="mx-5">${zamowienie.created_at}</td>
-    </tr>
-</table>
-        `;
-        document.querySelector('#tab').innerHTML += lista;
-    });
+    let tableRows = zamowienia.map(zamowienie => `
+        <tr>
+            <td>${zamowienie.imieNazwisko}</td>
+            <td>${zamowienie.nrTele}</td>
+            <td>${zamowienie.miasto}</td>
+            <td>${zamowienie.ulica} / ${zamowienie.nrDomu } / ${zamowienie.nrMieszkania ? zamowienie.nrMieszkania : ''}</td>
+            <td>${zamowienie.pietro ? zamowienie.pietro : ''}</td>
+            <td>${zamowienie.szczegoly_pizz.replace(/; /g, '<br>')}</td>
+            <td>${zamowienie.cena_zamowienia} zł</td>
+            <td>${zamowienie.created_at}</td>
+            <td>${zamowienie.uwagi ? zamowienie.uwagi : ''}</td>
+            
+        </tr>`).join('');
+
+    const table = `
+        <table class="table table-bordered mt-2">
+            <thead>
+                <tr class="text-center fs-6">
+                    <th style="width: 7%;">Imię i nazwisko</th>
+                    <th style="width: 5%;">Nr Telefonu</th>
+                    <th style="width: 5%;">Miasto</th>
+                    <th style="width: 7%;">Ulica / Nr Domu / Mieszkania</th>
+                    <th style="width: 3%;">Piętro</th>
+                    <th style="width: 35%;">Szczegóły Pizz</th>
+                    <th style="width: 5%;">Cena Zamówienia</th>
+                    <th style="width: 9%;">Data Zamówienia</th>
+                    <th style="width: 25%;">Uwagi</th>
+                </tr>
+            </thead>
+            <tbody>
+                ${tableRows}
+            </tbody>
+        </table>`;
+    document.querySelector('#tab').innerHTML = table;
 }
 
 
@@ -262,6 +264,31 @@ async function zlozZamowienie(e) {
     const pietro = document.querySelector('#pietro').value;
     const uwagi = document.querySelector('#uwagi').value;
 
+    // Walidacja: sprawdź, czy wszystkie wymagane pola są wypełnione
+    if (!imieNazwisko || !nrTele || !ulica || !nrDomu || !miasto) {
+        // Wyświetlenie toast z informacją o błędzie
+        const toastHTML = `
+        <div class="toast bg-danger text-white" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header bg-danger text-white">
+                <strong class="me-auto">Błąd</strong>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Wszystkie wymagane pola muszą być wypełnione!
+            </div>
+        </div>`;
+
+        const toastContainer = document.querySelector('.toast-container');
+        toastContainer.innerHTML = toastHTML;
+
+        const toastElement = toastContainer.querySelector('.toast');
+        const toast = new bootstrap.Toast(toastElement);
+        toast.show();
+
+        console.error('Błąd: Wymagane pola nie zostały wypełnione.');
+        return; // Natychmiast zakończ działanie funkcji
+    }
+
     let url = new URL('zlozZamowienie.php', baseURL);
     let resultPizza;
     let cena = 0;
@@ -310,7 +337,6 @@ async function zlozZamowienie(e) {
 
 
         resultPizza = await responsePizza.json();
-        console.log(resultZamowienie, resultPizza);
         if (resultPizza.error) {
             console.error(resultPizza.error);
             return;
@@ -346,8 +372,8 @@ async function zlozZamowienie(e) {
             window.location.href = 'index.html';
         }, 5000);
     }
-
 }
+
 
 sprawdzCzyKoszykPusty = () => {
     const koszykElement = document.querySelector('#zlozenieZamowienia');
@@ -356,3 +382,9 @@ sprawdzCzyKoszykPusty = () => {
         koszykElement.innerHTML = koszyk.length === 0 ? 'Koszyk jest pusty' : `Złóż zamówienie <img class="mx-2 send" src="assets/send.png" style="height: 30px; width: 30px"> </button>`;
     }
 }
+
+
+
+
+
+
